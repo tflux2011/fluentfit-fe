@@ -1,0 +1,107 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-primary {
+  @apply bg-dark-green;
+}
+
+.btn-outline {
+  @apply inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-secondary rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800;
+}
+
+.btn-primary-outline {
+  @apply inline-flex justify-center items-center py-2.5 px-5 text-sm font-medium text-center text-primary rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800;
+}
+
+.btn-primary-sm {
+  @apply text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5;
+}
+
+.bg-primary-dark {
+  @apply bg-really-dark-green;
+}
+
+.bg-accent {
+  background-color: #edf4f2;
+}
+
+.bg-secondary {
+  @apply bg-light-gray;
+}
+
+.nav-link {
+  @apply block py-2 px-3 text-white rounded md:bg-transparent md:text-gray-500 md:p-0 dark:text-white md:dark:text-blue-500;
+}
+
+.btn-primary-full {
+  @apply w-full text-white bg-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+}
+
+.text-primary {
+  color: #31473a;
+}
+
+.text-secondary {
+  color: #edf4f2;
+}
+
+.bg-dark-green {
+  background-color: #31473a;
+}
+
+.bg-really-dark-green {
+  background-color: #1c2820;
+}
+
+.bg-light-gray {
+  background-color: #edf4f2;
+}
+
+.active {
+  @apply text-primary;
+}
+
+.text-input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+.text-label {
+  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+}
+
+/* Disabled button styles */
+button:disabled,
+button[disabled] {
+  background-color: #c4c4c4; /* Gray for disabled state */
+  color: #f1f1f1; /* Light gray for text */
+  cursor: not-allowed;
+  pointer-events: none; /* Prevent interactions */
+  opacity: 0.7; /* Slightly faded look */
+}
+
+/* Disabled button hover (no change) */
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #c4c4c4;
+  transform: none; /* No hover effect */
+}
+
+.btn-primary-full {
+  @apply bg-primary text-white py-2 px-4 rounded hover:bg-primary-600 transition-all;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-600 py-2 px-4 rounded hover:bg-gray-200 transition-all;
+}
+
+.code-editor-container {
+  height: 300px; /* Set a fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ddd; /* Optional: Add a border for better UI */
+  border-radius: 5px;
+  padding: 5px; /* Optional: Add padding around the editor */
+}
