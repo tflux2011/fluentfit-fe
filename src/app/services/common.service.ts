@@ -15,6 +15,10 @@ export class CommonService {
     return this.#http.patch(this.url+'users', payload);
   }
 
+  handleInterviewQuestionSubmission(payload: {}){
+    return this.#http.post(this.url+'users', payload);
+  }
+
   getProblemByStack(payload: {stack: string}){
     return this.#http.patch(this.url+'users', payload);
   }

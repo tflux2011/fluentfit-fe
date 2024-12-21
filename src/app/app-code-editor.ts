@@ -7,6 +7,7 @@ import { python } from '@codemirror/lang-python';
 import { cpp } from '@codemirror/lang-cpp';
 import { java } from '@codemirror/lang-java';
 import { oneDark } from '@codemirror/theme-one-dark';
+import { AudioRecorderComponent } from "./audio-recorder.component";
 
 interface CodeTemplate {
   language: string;
@@ -17,10 +18,10 @@ interface CodeTemplate {
   selector: 'app-code-editor',
   imports: [FormsModule],
   template: `
-    <div class="w-full mb-4 bg-white border border-gray-300 rounded-lg p-6 space-y-4 font-mono text-sm focus:ring-primary-500 focus:border-primary-500">
+    <div class="w-full mb-4 bg-white border border-gray-300 rounded-lg p-0 font-mono text-sm focus:ring-primary-500 focus:border-primary-500">
       <div class="bg-white">
         <!-- Language Selection -->
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between px-3 pt-3 items-center mb-4">
           <div class="flex items-center space-x-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
@@ -40,15 +41,7 @@ interface CodeTemplate {
           </div>
 
           <div class="flex space-x-2">
-            <!-- <button 
-              (click)="copyCode()"
-              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-2 inline-flex items-center"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.375A6.75 6.75 0 0 1 21.75 10.5c0 2.577-1.592 4.773-3.744 5.734M15.666 3.375A3.75 3.75 0 0 0 15 3c-1.842 0-3.446 1.055-4.153 2.511m.21 3.014a.75.75 0 0 0-.214.196L7.5 16.5l.636.838.958.02a.75.75 0 0 0 .534-.24l3.68-4.127.172-.256a.75.75 0 0 0-.064-.907L9.22 8.414a.75.75 0 0 0-.556-.234z" />
-              </svg>
-              Copy
-            </button> -->
+          
             <button 
             (click)="runCode()"
             [disabled]="isRunning"

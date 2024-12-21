@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [RouterLink],
   template: `
     
 
-<footer class="bg-primary-dark dark:bg-gray-900">
+<footer class="bg-primary mt-24 dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
+              <a [routerLink]="['']" class="flex items-center">
                   <img src="fluentfit.svg" class="h-8 me-3" alt="FlowBite Logo" />
                   <span class="self-center text-2xl text-secondary font-semibold whitespace-nowrap dark:text-white">Fluentfit</span>
               </a>
@@ -20,21 +21,24 @@ import { Component } from '@angular/core';
                   <h2 class="mb-6 text-sm font-semibold text-secondary uppercase dark:text-white">Resources</h2>
                   <ul class="text-secondary dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                          <a [routerLink]="['/features']" class="hover:underline">Features</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                          <a [routerLink]="['/testimonials']" class="hover:underline">Testimonials</a>
                       </li>
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-secondary uppercase dark:text-white">Follow us</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-secondary uppercase dark:text-white">Quick Links</h2>
                   <ul class="text-secondary dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                          <a [routerLink]="['/pricing']" class="hover:underline ">Pricing</a>
+                      </li>
+                      <li class="mb-4">
+                          <a [routerLink]="['/sign-in']" class="hover:underline">Sign In</a>
                       </li>
                       <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                          <a [routerLink]="['/sign-up']" class="hover:underline">Sign up</a>
                       </li>
                   </ul>
               </div>

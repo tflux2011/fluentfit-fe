@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { BaseResponse, IAuthLoginPayload, IAuthRegisterPayload } from '../../interfaces/interface';
+import { BaseResponse, IAuthLoginPayload, IAuthRegisterPayload, IUser } from '../../interfaces/interface';
 import { environment } from '../../environments/environment.development';
 import { tap } from 'rxjs';
 
@@ -20,8 +20,12 @@ export class AuthService {
   }
 
   // Save token and user to localStorage/sessionStorage
-  storeSession(token: string, user: any): void {
+  storeSession(token: string, user: Partial<IUser>): void {
     localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+
+  updateUser(user: Partial<IUser>):void{
     localStorage.setItem(this.userKey, JSON.stringify(user));
   }
 
@@ -31,9 +35,15 @@ export class AuthService {
   }
 
   // Get user
-  getUser(): any | null {
+  getUser(): IUser {
     const user =
       localStorage.getItem(this.userKey) || sessionStorage.getItem(this.userKey);
+      // const defaultUser = {
+      //     progress: IProgress;
+      //     interviewHistory: IInterviewHistory[];
+      //     firstname: string,
+      //     lastname: string,
+      // }
     return user ? JSON.parse(user) : null;
   }
 
@@ -66,6 +76,7 @@ export class AuthService {
     tap((response:BaseResponse) => {
       if (response && response.token && response.user) {
       this.storeSession(response.token, response.user);
+      console.log(response.user);
       this._isLoggedIn.set(true); // Update login state
       }
     })

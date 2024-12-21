@@ -7,6 +7,8 @@ export interface IUser {
   languagePreference: string; // 'English' or other languages
   progress: IProgress;
   interviewHistory: IInterviewHistory[];
+  firstname: string,
+  lastname: string,
 }
 
 export interface IUserProfileSetup {
@@ -26,18 +28,21 @@ export interface IProgress {
 
 // **Interview History Type**
 export interface IInterviewHistory {
-  questionId: string; // ID of the interview question
-  response: string; // Text response provided by the user
+  questionId: string; 
+  response: string; 
   feedback: IFeedback;
-  score: number; // Score given to the response
+  score: number;
+  date: string,
+  questionType: string,
+  title: string,
 }
 
 // **Feedback Type**
 export interface IFeedback {
-  clarity: string; // Feedback on clarity of the response
-  relevance: string; // Feedback on relevance of the response to the question
-  pronunciation: string; // Feedback on pronunciation
-  grammar: string; // Feedback on grammar
+  clarity: string;
+  relevance: string; 
+  pronunciation: string; 
+  grammar: string; 
 }
 
 // **Interview Question Type**
@@ -94,6 +99,25 @@ export interface BaseResponse {
   user?: Partial<IUser>
 }
 
+export interface BaseResponseIQ {
+  statusCode?: number;
+  isSuccess?: boolean;
+  message?: string | object;
+  data?: [{
+    audioFilePath: string,
+    difficulty: number,
+    exampleAnswer: string,
+    question: string,
+    questionType: string,
+    stack: string,
+    title: string
+  }];
+  token?: string;
+  user?: Partial<IUser>
+}
+
+
+
 export interface SelectableItem {
   name: string;
   selected: boolean;
@@ -109,4 +133,37 @@ export interface ProblemEx {
   audioFilePath: string,
   exampleAnswer: string;
   stack: string;
+}
+
+
+export interface Feedback {
+  clarity: string;
+  relevance: string;
+  pronunciation: string | null;
+  grammar: string;
+  technicalAccuracy: string;
+  location?: string;
+}
+
+export interface Result {
+  statusCode?: number;
+  isSuccess?: boolean;
+  message?: string | object;
+  data?: {
+    "userId": string,
+        "questionId": string,
+        "response": string,
+        "analysis": {
+            "clarity": string,
+            "relevance": string,
+            "pronunciation": string | null,
+            "grammar": string,
+            "technicalAccuracy": string
+        },
+        "location": string,
+        "score": number,
+        "_id": string;
+      },
+  token?: string;
+  user?: Partial<IUser>
 }

@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   template: `
     <div class="w-full bg-white p-6">
       @if(isVisual){
-      <!-- Visualization -->
-      <canvas #visualizerCanvas class="w-full h-40 mb-4"></canvas>
-    }
+        <!-- Visualization -->
+        <canvas #visualizerCanvas class="w-full h-40 mb-4"></canvas>
+      }
       <!-- Progress Bar -->
       <div class="mb-4">
         <input 
@@ -104,10 +104,13 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.setupAudio();
-    this.setupVisualizer();
+    if (this.isVisual ) {
+      this.setupVisualizer();
+    }
   }
 
   private setupAudio() {
+    if (this.audioPlayer?.nativeElement) {
     const audioElement = this.audioPlayer.nativeElement;
 
     // Load metadata and track progress
@@ -119,19 +122,24 @@ export class AudioPlayerComponent implements AfterViewInit {
 
     // Reset play button when audio ends
     audioElement.addEventListener('ended', () => this.isPlaying.set(false));
+    }
   }
 
   private setupVisualizer() {
-    this.audioContext = new AudioContext();
-    this.analyser = this.audioContext.createAnalyser();
-    this.canvasCtx = this.canvasRef.nativeElement.getContext('2d')!;
+    if (!this.audioContext) {
+      this.audioContext = new AudioContext();
+      this.analyser = this.audioContext.createAnalyser();
+      this.canvasCtx = this.canvasRef.nativeElement.getContext('2d')!;
 
-    const source = this.audioContext.createMediaElementSource(this.audioPlayer.nativeElement);
-    source.connect(this.analyser);
-    this.analyser.connect(this.audioContext.destination);
+      if (this.canvasRef?.nativeElement) {
+        const source = this.audioContext.createMediaElementSource(this.audioPlayer.nativeElement);
+        source.connect(this.analyser);
+        this.analyser.connect(this.audioContext.destination);
 
-    this.analyser.fftSize = 256; 
-    this.drawVisualizer();
+        this.analyser.fftSize = 256; 
+        this.drawVisualizer();
+      }
+    }
   }
 
   private drawVisualizer() {
@@ -142,20 +150,22 @@ export class AudioPlayerComponent implements AfterViewInit {
       this.animationFrameId = requestAnimationFrame(draw);
 
       this.analyser.getByteFrequencyData(dataArray);
-      const canvas = this.canvasRef.nativeElement;
-      this.canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+      if (this.canvasRef?.nativeElement) {
+          const canvas = this.canvasRef.nativeElement;
+          this.canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Visualize as bars
-      const barWidth = (canvas.width / bufferLength) * 2.5;
-      let barHeight: number;
-      let x = 0;
+          // Visualize as bars
+          const barWidth = (canvas.width / bufferLength) * 2.5;
+          let barHeight: number;
+          let x = 0;
 
-      dataArray.forEach((value) => {
-        barHeight = value / 2;
-        this.canvasCtx.fillStyle = `rgb(${barHeight + 49},51,58)`;
-        this.canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-        x += barWidth + 1;
-      });
+          dataArray.forEach((value) => {
+            barHeight = value / 2;
+            this.canvasCtx.fillStyle = `rgb(${barHeight + 49},51,58)`;
+            this.canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 1;
+          });
+      }
     };
 
     draw();
@@ -163,6 +173,10 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   togglePlayPause() {
     const audioElement = this.audioPlayer.nativeElement;
+
+    if (!this.audioContext) {
+      this.audioContext = new AudioContext();
+    }
 
     if (this.isPlaying()) {
       audioElement.pause();
@@ -198,3 +212,5 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.deleteAudio.emit(false);
   }
 }
+
+
