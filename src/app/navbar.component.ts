@@ -38,10 +38,10 @@ import { AuthService } from './services/auth.service';
         </li>
         @if(!authService.isLoggedIn()){
         <li>
-          <a [routerLink]="['sign-up']" class="nav-link" routerLinkActive="active">Sign Up</a>
+          <a [routerLink]="['/auth/sign-up']" class="nav-link" routerLinkActive="active">Sign Up</a>
         </li>
         <li>
-          <a [routerLink]="['sign-in']" routerLinkActive="active" class="nav-link">Sign In</a>
+          <a [routerLink]="['/auth/sign-in']" routerLinkActive="active" class="nav-link">Sign In</a>
         </li>
         }@else{
           <li>
