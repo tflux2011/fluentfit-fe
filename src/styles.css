@@ -105,3 +105,8 @@ button[disabled]:hover {
   border-radius: 5px;
   padding: 5px; /* Optional: Add padding around the editor */
 }
+
+.py-50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

@@ -35,10 +35,10 @@ import { RouterLink } from '@angular/router';
                           <a [routerLink]="['/pricing']" class="hover:underline ">Pricing</a>
                       </li>
                       <li class="mb-4">
-                          <a [routerLink]="['/sign-in']" class="hover:underline">Sign In</a>
+                          <a [routerLink]="['/auth/sign-in']" class="hover:underline">Sign In</a>
                       </li>
                       <li>
-                          <a [routerLink]="['/sign-up']" class="hover:underline">Sign up</a>
+                          <a [routerLink]="['/auth/sign-up']" class="hover:underline">Sign up</a>
                       </li>
                   </ul>
               </div>

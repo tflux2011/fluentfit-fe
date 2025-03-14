@@ -10,7 +10,10 @@ import { BaseResponse } from '../interfaces/interface';
   template: `
   <section class="bg-primary dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-   
+    <a [routerLink]="['']" class="flex items-center space-x-3 rtl:space-x-reverse mb-3">
+        <img src="fluentfit.svg" class="h-8" alt="Flowbite Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">FluentFit</span>
+    </a>
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-primary md:text-2xl dark:text-white">
@@ -54,7 +57,7 @@ import { BaseResponse } from '../interfaces/interface';
                     @if(isLoading){<span>Processing...</span>}
                     </button>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                      Don't have an account? <a [routerLink]="['/sign-up']" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here</a>
+                      Don't have an account? <a [routerLink]="['/auth/sign-up']" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up here</a>
                   </p>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                       Forgot Password? <a [routerLink]="['/forgot-password']" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Click here</a>

@@ -9,9 +9,12 @@ import { NgIf } from '@angular/common';
   selector: 'app-signup',
   imports: [RouterLink, ReactiveFormsModule, NgIf],
   template: `
-    <section class="bg-primary dark:bg-gray-900">
+    <section class="bg-primary dark:bg-gray-900 py-50">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-   
+  <a [routerLink]="['']" class="flex items-center space-x-3 rtl:space-x-reverse mb-3">
+        <img src="fluentfit.svg" class="h-8" alt="Flowbite Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">FluentFit</span>
+    </a>
       <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-primary md:text-2xl dark:text-white">
@@ -85,7 +88,7 @@ import { NgIf } from '@angular/common';
                     @if(isLoading){<span>Processing...</span>}
                   </button>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                      Already have an account? <a [routerLink]="['/sign-in']" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                      Already have an account? <a [routerLink]="['/auth/sign-in']" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</a>
                   </p>
               </form>
           </div>
